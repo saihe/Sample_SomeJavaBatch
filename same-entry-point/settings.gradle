@@ -1,0 +1,5 @@
+rootProject.name = 'same-entry-point'
+include 'parent-module'
+include 'first-child-module'
+include 'common'
+
