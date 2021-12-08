@@ -50,9 +50,9 @@ subprojects {
         // 基本入れるいつものやつ
         annotationProcessor ('org.projectlombok:lombok:1.18.22')
         compileOnly module ('org.projectlombok:lombok:1.18.22')
-        compileOnly 'org.slf4j:slf4j-api:1.7.25'
-        compileOnly 'ch.qos.logback:logback-classic:1.2.3'
-        compileOnly 'ch.qos.logback:logback-core:1.2.3'
+        implementation 'org.slf4j:slf4j-api:1.7.25'
+        implementation 'ch.qos.logback:logback-classic:1.2.3'
+        implementation 'ch.qos.logback:logback-core:1.2.3'
     }
 
     compileJava {
