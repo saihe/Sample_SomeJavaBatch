@@ -1,0 +1,29 @@
+plugins {
+    id 'java'
+    id 'application'
+}
+
+group 'ksaito.practice.sample.some-java-batch'
+mainClassName = 'ksaito.practice.sample.sameEntryPoint.Executor'
+version '1.0-SNAPSHOT'
+
+dependencies {
+    implementation project(':parent-module')
+}
+
+jar {
+    duplicatesStrategy('include')
+
+    manifest {
+        attributes (
+            'Main-Class' : 'ksaito.practice.sample.sameEntryPoint.Executor'
+            , 'Class-Path': configurations.runtimeClasspath.files.collect{ project.uri(it) }.join(' ')
+        )
+    }
+    jar.into('lib') {
+        from configurations.runtimeClasspath
+    }
+    from {
+        configurations.compileClasspath.collect { it.isDirectory() ? it : zipTree(it) }
+    }
+}
