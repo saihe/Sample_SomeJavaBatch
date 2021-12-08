@@ -64,20 +64,6 @@ subprojects {
         }
     }
 
-    jar {
-//        manifest {
-//            attributes (
-//                    'Main-Class' : 'ksaito.practice.sample.sameEntryPoint.EntryPoint'
-//                    , 'Class-Path': configurations.runtime.files.collect{ project.uri(it) }.join(' ')
-//            )
-//        }
-//        jar.into('lib') {
-//            from configurations.runtime
-//        }
-//    from configurations.compile.collect { it.isDirectory() ? it : zipTree(it) }
-    }
-
-
     test {
         useJUnitPlatform()
     }
