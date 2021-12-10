@@ -27,10 +27,9 @@ jobs:
         distribution: 'zulu'
         cache: 'gradle'
     - run: ls -la
-    - run: wkdir=$(pwd)
     - name: Grant execute permission for gradlew
       run: chmod +x */gradlew
     - name: Build same-entry-point
-      run: cd ${wkdir}/same-entry-point;./gradlew build
+      run: cd ./same-entry-point;./gradlew build
     - name: Build only-entry-point
-      run: cd ${wkdir}/only-entry-point;./gradlew build
+      run: cd ./only-entry-point;./gradlew build
