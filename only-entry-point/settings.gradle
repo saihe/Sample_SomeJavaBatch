@@ -1,0 +1,6 @@
+rootProject.name = 'only-entry-point'
+include 'common'
+include 'main-module'
+include 'sub-module'
+include 'write-console'
+

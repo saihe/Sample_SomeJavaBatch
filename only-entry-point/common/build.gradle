@@ -1,0 +1,6 @@
+plugins {
+    id 'java'
+}
+
+group 'ksaito.practice.sample.some-java-batch.only-entry-point'
+version '1.0-SNAPSHOT'
