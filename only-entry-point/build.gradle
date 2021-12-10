@@ -1,0 +1,60 @@
+plugins {
+    id 'java'
+}
+
+group 'ksaito.practice.sample.some-java-batch'
+version '1.0-SNAPSHOT'
+
+subprojects {
+    apply plugin: "java"
+    apply plugin: "eclipse-wtp"
+    apply plugin: "idea"
+
+    sourceCompatibility = JavaVersion.VERSION_17
+    targetCompatibility = JavaVersion.VERSION_17
+
+    compileJava.options.encoding = "UTF-8"
+    compileTestJava.options.encoding = "UTF-8"
+    javadoc.options.encoding = "UTF-8"
+
+    sourceSets {
+        main {
+            java.srcDirs = ["src/main/java"]
+            resources.srcDirs = ["src/main/resources"]
+        }
+        test {
+            java.srcDirs = ["src/test/java"]
+            resources.srcDirs = ["src/test/resources"]
+        }
+    }
+
+    repositories {
+        mavenCentral()
+    }
+
+    dependencies {
+        // 最初から入ってるやつ
+        testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.2'
+        testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.2'
+
+        // 基本入れるいつものやつ
+        annotationProcessor ('org.projectlombok:lombok:1.18.22')
+        compileOnly module ('org.projectlombok:lombok:1.18.22')
+        implementation 'org.slf4j:slf4j-api:1.7.25'
+        implementation 'ch.qos.logback:logback-classic:1.2.3'
+        implementation 'ch.qos.logback:logback-core:1.2.3'
+    }
+
+    compileJava {
+        doFirst {
+            options.compilerArgs = [
+                    '--module-path', classpath.asPath
+            ]
+            classpath = files()
+        }
+    }
+
+    test {
+        useJUnitPlatform()
+    }
+}

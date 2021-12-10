@@ -1,0 +1,32 @@
+plugins {
+    id 'java'
+    id 'application'
+}
+
+mainClassName='ksaito.practice.sample.someJavaBatch.onlyEntryPoint.Application'
+
+group 'ksaito.practice.sample.some-java-batch.only-entry-point'
+version '1.0-SNAPSHOT'
+
+dependencies {
+    implementation project(':common')
+    implementation project(':sub-module')
+    implementation project(':write-console')
+}
+
+jar {
+    duplicatesStrategy('include')
+
+    manifest {
+        attributes (
+                'Main-Class' : 'ksaito.practice.sample.someJavaBatch.onlyEntryPoint.Application'
+                , 'Class-Path': configurations.runtimeClasspath.files.collect{ project.uri(it) }.join(' ')
+        )
+    }
+    jar.into('lib') {
+        from configurations.runtimeClasspath
+    }
+    from {
+        configurations.compileClasspath.collect { it.isDirectory() ? it : zipTree(it) }
+    }
+}
