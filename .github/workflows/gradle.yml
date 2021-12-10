@@ -21,11 +21,17 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: Set up JDK 17
-      uses: actions/setup-java@v
+      uses: actions/setup-java@v2
       with:
-        java-version: '17.0.1'
-        distribution: 'microsoft'
+        java-version: '17'
+        distribution: '<distribution>'
+        cache: 'gradle'
     - name: Grant execute permission for gradlew
       run: chmod +x gradlew
     - name: Build same-entry-point:parent-module
       run: ./gradlew build
+    - name: Publish to GitHub Packages
+      run: gradle publish
+      env:
+        USERNAME: ${{ github.actor }}
+        PASSWORD: ${{ secrets.GITHUB_TOKEN }}
