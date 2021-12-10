@@ -30,6 +30,6 @@ jobs:
     - name: Grant execute permission for gradlew
       run: chmod +x */gradlew
     - name: Build same-entry-point
-      run: cd ./same-entry-point;./gradlew build
+      run: cd ./same-entry-point;./gradlew compileJava
     - name: Build only-entry-point
-      run: cd ./only-entry-point;./gradlew build
+      run: cd ./only-entry-point;./gradlew compileJava
